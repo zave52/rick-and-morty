@@ -1,2 +1,4 @@
 Django==5.1.6
 requests==2.32.3
+django-rest-framework==0.1.0
+djangorestframework==3.15.2
