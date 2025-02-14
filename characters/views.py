@@ -1,7 +1,8 @@
 import random
 
+from django_filters.rest_framework import DjangoFilterBackend
 from django.http import HttpRequest, HttpResponse
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -16,3 +17,12 @@ def get_random_character_view(request: HttpRequest) -> HttpResponse:
     random_character = Character.objects.get(pk=random_pk)
     serializer = CharacterSerializer(random_character)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class CharacterListView(generics.ListAPIView):
+    queryset = Character.objects.all()
+    serializer_class = CharacterSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = {
+        "name": ["exact", "icontains"]
+    }
