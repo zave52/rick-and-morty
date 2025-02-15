@@ -48,7 +48,7 @@ async def scrape_single_page(
 async def scrape_characters() -> list[Character]:
     start = time.perf_counter()
 
-    url_to_scrape = "https://rickandmortyapi.com/graphql"
+    url_to_scrape = settings.RICK_AND_MORTY_API_CHARACTERS_URL
 
     characters_response = httpx.post(
         url_to_scrape, data={"query": GRAPHQL_QUERY % "1"}
