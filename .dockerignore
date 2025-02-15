@@ -5,5 +5,3 @@ docker-compose.yml
 .git*
 .idea
 *.md
-db.sqlite3
-postgres
