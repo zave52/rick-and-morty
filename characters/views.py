@@ -9,6 +9,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from characters.models import Character
+from characters.pagination import CharactersListPagination
 from characters.serializers import CharacterSerializer
 
 
@@ -30,6 +31,7 @@ def get_random_character_view(request: HttpRequest) -> HttpResponse:
 class CharacterListView(generics.ListAPIView):
     queryset = Character.objects.all()
     serializer_class = CharacterSerializer
+    pagination_class = CharactersListPagination
     filter_backends = [DjangoFilterBackend]
     filterset_fields = {
         "name": ["icontains"]
